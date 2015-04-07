@@ -27,7 +27,7 @@ public class SparseArrayBoardImpl implements Board {
 	/**
 	 * shortcut pointers to the coordinates of the letters
 	 */
-	protected HashMap letterCoordinates;
+	protected HashMap<Character, Coordinate> letterCoordinates;
 	
 	public SparseArrayBoardImpl() {
 		this.tiles = new Tile[HEIGHT][WIDTH];
@@ -72,5 +72,19 @@ public class SparseArrayBoardImpl implements Board {
 		this.tiles[centre.y + 1][centre.x - 1]		= new Tile(3, TileType.RED);
 		this.tiles[centre.y + 1][centre.x]			= new Tile(3, TileType.YELLOW);
 		this.tiles[centre.y + 1][centre.x + 1]		= new Tile(2, TileType.RED);
+		
+		// place the letters
+		this.letterCoordinates.put('a', new Coordinate((short) (centre.y - 2), (short) (centre.x - 1)));
+		this.letterCoordinates.put('b', new Coordinate((short) (centre.y - 2), (short) (centre.x)));
+		this.letterCoordinates.put('c', new Coordinate((short) (centre.y - 2), (short) (centre.x + 1)));
+		this.letterCoordinates.put('d', new Coordinate((short) (centre.y - 1), (short) (centre.x + 2)));
+		this.letterCoordinates.put('e', new Coordinate((short) (centre.y), (short) (centre.x + 2)));
+		this.letterCoordinates.put('f', new Coordinate((short) (centre.y + 1), (short) (centre.x + 2)));
+		this.letterCoordinates.put('g', new Coordinate((short) (centre.y + 2), (short) (centre.x + 1)));
+		this.letterCoordinates.put('h', new Coordinate((short) (centre.y + 2), (short) (centre.x)));
+		this.letterCoordinates.put('i', new Coordinate((short) (centre.y + 2), (short) (centre.x - 1)));
+		this.letterCoordinates.put('j', new Coordinate((short) (centre.y + 1), (short) (centre.x - 2)));
+		this.letterCoordinates.put('k', new Coordinate((short) (centre.y), (short) (centre.x - 2)));
+		this.letterCoordinates.put('l', new Coordinate((short) (centre.y - 1), (short) (centre.x - 2)));
 	}
 }

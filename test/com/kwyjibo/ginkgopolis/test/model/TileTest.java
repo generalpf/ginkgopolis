@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.kwyjibo.ginkgopolis.model.Tile;
+import com.kwyjibo.ginkgopolis.model.BuildingTile;
 
 public class TileTest {
 
@@ -16,8 +16,8 @@ public class TileTest {
 	@Test
 	public void testGetRank() {
 		// derpiest test possible
-		Tile blueTile = new Tile(4, Tile.TileType.BLUE);
-		assertEquals(Tile.TileType.BLUE, blueTile.getType());
+		BuildingTile blueTile = new BuildingTile(4, BuildingTile.TileType.BLUE);
+		assertEquals(BuildingTile.TileType.BLUE, blueTile.getType());
 	}
 
 }

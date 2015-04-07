@@ -9,7 +9,7 @@ public interface Board {
 	 * 
 	 * TODO: this will need a callback to ask the player/AI where to move the letter to
 	 */
-	public void expandOnLetter(Tile tile, char letter);
+	public void urbanize(BuildingTile tile, char letter);
 	
 	/**
 	 * @param players - the players in the game
@@ -21,7 +21,7 @@ public interface Board {
 	 * @return - a 2D array of tiles that is the smallest box that can contain the board
 	 * 				(i.e. no empty columns or rows)
 	 */
-	public Tile[][] getSmallestTileBox();
+	public BuildingTile[][] getSmallestTileBox();
 	
 	/**
 	 * prepares the board by creating and placing the nine starting tiles and the letters

@@ -7,7 +7,7 @@ public class Player {
 	protected String name;
 	protected int points;
 	protected int newHandTokens;
-	protected List<Tile> tileList;
+	protected List<BuildingTile> tileList;
 	protected int resourcesReady;
 	protected int resourcesLeft;
 	
@@ -16,7 +16,7 @@ public class Player {
 		this.name = name;
 		this.points = points;
 		this.newHandTokens = newHandTokens;
-		this.tileList = new ArrayList<Tile>();
+		this.tileList = new ArrayList<BuildingTile>();
 	}
 
 	public String getName() {
@@ -48,11 +48,11 @@ public class Player {
 		}
 	}
 
-	public List<Tile> getTileList() {
+	public List<BuildingTile> getTileList() {
 		return tileList;
 	}
 	
-	public void addTile(Tile tile) {
+	public void addTile(BuildingTile tile) {
 		this.tileList.add(tile);
 	}
 }

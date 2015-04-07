@@ -3,7 +3,7 @@ package com.kwyjibo.ginkgopolis.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.kwyjibo.ginkgopolis.model.Tile.TileType;
+import com.kwyjibo.ginkgopolis.model.BuildingTile.TileType;
 
 public class SparseArrayBoardImpl implements Board {
 	private class Coordinate {
@@ -19,6 +19,14 @@ public class SparseArrayBoardImpl implements Board {
 	protected final short WIDTH = 255;
 	protected final short HEIGHT = 255;
 	
+	/*
+	 * if we always keep track of the bounds of our tiles as we expand,
+	 * getSmallestTileBox() will be a snap!
+	 * includes letter "tiles".
+	 */
+	protected Coordinate topLeft;
+	protected Coordinate bottomRight;
+	
 	/**
 	 * a sparse array that will contain even the widest/tallest possible configuration
 	 * of the board
@@ -30,14 +38,14 @@ public class SparseArrayBoardImpl implements Board {
 	protected HashMap<Character, Coordinate> letterCoordinates;
 	
 	public SparseArrayBoardImpl() {
-		this.tiles = new Tile[HEIGHT][WIDTH];
+		this.tiles = new BuildingTile[HEIGHT][WIDTH];
 		this.letterCoordinates = new HashMap<Character, Coordinate>(12);
 		
 		this.seedBoard();
 	}
 	
 	@Override
-	public void expandOnLetter(Tile tile, char letter) {
+	public void urbanize(BuildingTile tile, char letter) {
 		// TODO Auto-generated method stub
 	}
 
@@ -48,7 +56,7 @@ public class SparseArrayBoardImpl implements Board {
 	}
 
 	@Override
-	public Tile[][] getSmallestTileBox() {
+	public BuildingTile[][] getSmallestTileBox() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -59,21 +67,21 @@ public class SparseArrayBoardImpl implements Board {
 		Coordinate centre = new Coordinate((short) (WIDTH / 2), (short) (HEIGHT / 2));
 		
 		// top row
-		this.tiles[centre.y - 1][centre.x - 1]		= new Tile(1, TileType.BLUE);
-		this.tiles[centre.y - 1][centre.x]			= new Tile(1, TileType.YELLOW);
-		this.tiles[centre.y - 1][centre.x + 1]		= new Tile(1, TileType.RED);
+		this.tiles[centre.y - 1][centre.x - 1]		= new BuildingTile(1, TileType.BLUE);
+		this.tiles[centre.y - 1][centre.x]			= new BuildingTile(1, TileType.YELLOW);
+		this.tiles[centre.y - 1][centre.x + 1]		= new BuildingTile(1, TileType.RED);
 		
 		// middle row
-		this.tiles[centre.y][centre.x - 1]			= new Tile(2, TileType.YELLOW);
-		this.tiles[centre.y][centre.x]				= new Tile(2, TileType.BLUE);
-		this.tiles[centre.y][centre.x + 1]			= new Tile(3, TileType.BLUE);
+		this.tiles[centre.y][centre.x - 1]			= new BuildingTile(2, TileType.YELLOW);
+		this.tiles[centre.y][centre.x]				= new BuildingTile(2, TileType.BLUE);
+		this.tiles[centre.y][centre.x + 1]			= new BuildingTile(3, TileType.BLUE);
 		
 		// bottom row
-		this.tiles[centre.y + 1][centre.x - 1]		= new Tile(3, TileType.RED);
-		this.tiles[centre.y + 1][centre.x]			= new Tile(3, TileType.YELLOW);
-		this.tiles[centre.y + 1][centre.x + 1]		= new Tile(2, TileType.RED);
+		this.tiles[centre.y + 1][centre.x - 1]		= new BuildingTile(3, TileType.RED);
+		this.tiles[centre.y + 1][centre.x]			= new BuildingTile(3, TileType.YELLOW);
+		this.tiles[centre.y + 1][centre.x + 1]		= new BuildingTile(2, TileType.RED);
 		
-		// place the letters
+		// build the urbanization tile coordinates
 		this.letterCoordinates.put('a', new Coordinate((short) (centre.y - 2), (short) (centre.x - 1)));
 		this.letterCoordinates.put('b', new Coordinate((short) (centre.y - 2), (short) (centre.x)));
 		this.letterCoordinates.put('c', new Coordinate((short) (centre.y - 2), (short) (centre.x + 1)));
@@ -86,5 +94,15 @@ public class SparseArrayBoardImpl implements Board {
 		this.letterCoordinates.put('j', new Coordinate((short) (centre.y + 1), (short) (centre.x - 2)));
 		this.letterCoordinates.put('k', new Coordinate((short) (centre.y), (short) (centre.x - 2)));
 		this.letterCoordinates.put('l', new Coordinate((short) (centre.y - 1), (short) (centre.x - 2)));
+		
+		// put them on the board
+		for (Character c : this.letterCoordinates.keySet()) {
+			Coordinate co = this.letterCoordinates.get(c);
+			this.tiles[co.y][co.x] = new UrbanizationTile(c);
+		}
+		
+		this.topLeft = new Coordinate((short) (centre.y - 2), (short) (centre.x - 2));
+		this.bottomRight = new Coordinate((short) (centre.y + 2), (short) (centre.x + 2));
+		
 	}
 }

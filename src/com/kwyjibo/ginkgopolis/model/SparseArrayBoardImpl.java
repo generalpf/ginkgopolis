@@ -38,10 +38,8 @@ public class SparseArrayBoardImpl implements Board {
 	protected HashMap<Character, Coordinate> letterCoordinates;
 	
 	public SparseArrayBoardImpl() {
-		this.tiles = new BuildingTile[HEIGHT][WIDTH];
+		this.tiles = new Tile[HEIGHT][WIDTH];
 		this.letterCoordinates = new HashMap<Character, Coordinate>(12);
-		
-		this.seedBoard();
 	}
 	
 	@Override
@@ -56,9 +54,15 @@ public class SparseArrayBoardImpl implements Board {
 	}
 
 	@Override
-	public BuildingTile[][] getSmallestTileBox() {
-		// TODO Auto-generated method stub
-		return null;
+	public Tile[][] getSmallestTileBox() {
+		// extract the rectangular region of this.tiles bounded by this.topLeft and this.bottomRight
+		Tile[][] tiles = new Tile[this.bottomRight.y - this.topLeft.y + 1][this.bottomRight.x - this.topLeft.x + 1];
+		for (short i = this.topLeft.y; i <= this.bottomRight.y; i++) {
+			for (short j = this.topLeft.x; j <= this.bottomRight.x; j++) {
+				tiles[i - this.topLeft.y][j - this.topLeft.x] = this.tiles[i][j];
+			}
+		}
+		return tiles;
 	}
 	
 	@Override
@@ -103,6 +107,5 @@ public class SparseArrayBoardImpl implements Board {
 		
 		this.topLeft = new Coordinate((short) (centre.y - 2), (short) (centre.x - 2));
 		this.bottomRight = new Coordinate((short) (centre.y + 2), (short) (centre.x + 2));
-		
 	}
 }

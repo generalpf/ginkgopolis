@@ -3,15 +3,13 @@ package com.kwyjibo.ginkgopolis.model;
 public class Card {
 	protected int rank;
 	protected TileType type;
-	protected Benefit startingBenefit;
-	protected CardActions cardActions;
+	protected PlayerActionHandler playerActionHandler;
 	
-	public Card(int rank, TileType type, Benefit startingBenefit, CardActions cardActions) {
+	public Card(int rank, TileType type, PlayerActionHandler playerActionHandler) {
 		super();
 		this.rank = rank;
 		this.type = type;
-		this.startingBenefit = startingBenefit;
-		this.cardActions = cardActions;
+		this.playerActionHandler = playerActionHandler;
 	}
 
 	public int getRank() {
@@ -22,11 +20,7 @@ public class Card {
 		return type;
 	}
 	
-	public Benefit getStartingBenefit() {
-		return startingBenefit;
-	}
-	
-	public CardActions getCardActions() {
-		return cardActions;
+	public PlayerActionHandler getPlayerActionHandler() {
+		return playerActionHandler;
 	}
 }

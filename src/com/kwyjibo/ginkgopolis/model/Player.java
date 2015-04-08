@@ -72,7 +72,9 @@ public class Player {
 	
 	public void scoreCards(Board board) {
 		for (Card card : this.cards) {
-			card.getCardActions().onScoring(this, board);
+			if (card instanceof RegularCard) {
+				((RegularCard) card).getScoringHandler().onScoring(this, board);
+			}
 		}
 	}
 

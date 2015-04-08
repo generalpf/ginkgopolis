@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.kwyjibo.ginkgopolis.model.BuildingTile;
+import com.kwyjibo.ginkgopolis.model.TileType;
 
 public class TileTest {
 
@@ -16,8 +17,8 @@ public class TileTest {
 	@Test
 	public void testGetRank() {
 		// derpiest test possible
-		BuildingTile blueTile = new BuildingTile(4, BuildingTile.TileType.BLUE);
-		assertEquals(BuildingTile.TileType.BLUE, blueTile.getType());
+		BuildingTile blueTile = new BuildingTile(4, TileType.BLUE);
+		assertEquals(TileType.BLUE, blueTile.getType());
 	}
 
 }

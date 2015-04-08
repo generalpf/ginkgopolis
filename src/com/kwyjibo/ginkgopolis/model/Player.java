@@ -1,6 +1,7 @@
 package com.kwyjibo.ginkgopolis.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Player {
@@ -10,13 +11,17 @@ public class Player {
 	protected List<BuildingTile> tileList;
 	protected int resourcesReady;
 	protected int resourcesLeft;
+	protected List<Card> cards;
 	
-	public Player(String name, int points, int newHandTokens) {
+	public Player(String name, int points, int resourcesReady, int resourcesLeft) {
 		super();
 		this.name = name;
 		this.points = points;
-		this.newHandTokens = newHandTokens;
+		this.newHandTokens = 2;
 		this.tileList = new ArrayList<BuildingTile>();
+		this.resourcesReady = resourcesReady;
+		this.resourcesLeft = resourcesLeft;
+		this.cards = new ArrayList<Card>();
 	}
 
 	public String getName() {
@@ -28,10 +33,19 @@ public class Player {
 	}
 	
 	/**
-	 * @param pointChange - how many points to add (negative to subtract)
+	 * @param benefit - the number of resources, points and tiles to gain
+	 * @param tiles - if benefit.tiles > 0, the actual BuildingTile objects to acquire
 	 */
-	public void addPoints(int pointChange) {
-		this.points += pointChange;
+	public void applyBenefit(Benefit benefit, BuildingTile[] tiles) {
+		if (benefit.resources > 0) {
+			int takeThisMany = Math.min(benefit.resources, this.resourcesLeft);
+			this.resourcesReady += takeThisMany;
+			this.resourcesLeft -= takeThisMany;
+		}
+		this.points += benefit.points;
+		if (benefit.tiles > 0) {
+			this.tileList.addAll(Arrays.asList(tiles));
+		}
 	}
 
 	public int getNewHandTokens() {
@@ -54,5 +68,19 @@ public class Player {
 	
 	public void addTile(BuildingTile tile) {
 		this.tileList.add(tile);
+	}
+	
+	public void scoreCards(Board board) {
+		for (Card card : this.cards) {
+			card.getCardActions().onScoring(this, board);
+		}
+	}
+
+	public int getResourcesReady() {
+		return resourcesReady;
+	}
+
+	public int getResourcesLeft() {
+		return resourcesLeft;
 	}
 }

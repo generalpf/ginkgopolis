@@ -35,12 +35,15 @@ public class BoardTest {
 		for (int i = 0; i < 5; i++) {
 			for (int j = 0; j < 5; j++) {
 				Tile tile = tiles[i][j];
-				if (tile instanceof UrbanizationTile) {
+				if (tile == null) {
+					System.out.print("    ");
+				}
+				else if (tile instanceof UrbanizationTile) {
 					System.out.print("[" + ((UrbanizationTile) tile).getLetter() + "] ");
 				}
 				else if (tile instanceof BuildingTile) {
 					BuildingTile buildingTile = (BuildingTile) tile;
-					System.out.print(buildingTile.getType() + new Integer(buildingTile.getRank()).toString() + " ");
+					System.out.print(buildingTile.getType().toString().charAt(0) + new Integer(buildingTile.getRank()).toString() + "  ");
 				}
 				if (j == 4) {
 					System.out.println();

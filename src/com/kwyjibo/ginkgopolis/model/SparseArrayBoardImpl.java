@@ -3,21 +3,19 @@ package com.kwyjibo.ginkgopolis.model;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.kwyjibo.ginkgopolis.model.BuildingTile.TileType;
-
 public class SparseArrayBoardImpl implements Board {
 	private class Coordinate {
-		public short x;
-		public short y;
+		public int x;
+		public int y;
 		
-		public Coordinate(short x, short y) {
+		public Coordinate(int x, int y) {
 			this.x = x;
 			this.y = y;
 		}
 	}
 	
-	protected final short WIDTH = 255;
-	protected final short HEIGHT = 255;
+	protected final int WIDTH = 255;
+	protected final int HEIGHT = 255;
 	
 	/*
 	 * if we always keep track of the bounds of our tiles as we expand,
@@ -43,8 +41,9 @@ public class SparseArrayBoardImpl implements Board {
 	}
 	
 	@Override
-	public void urbanize(BuildingTile tile, char letter) {
+	public Benefit urbanize(BuildingTile tile, char letter) {
 		// TODO Auto-generated method stub
+		return new Benefit(0, 0, 0);
 	}
 
 	@Override
@@ -57,8 +56,8 @@ public class SparseArrayBoardImpl implements Board {
 	public Tile[][] getSmallestTileBox() {
 		// extract the rectangular region of this.tiles bounded by this.topLeft and this.bottomRight
 		Tile[][] tiles = new Tile[this.bottomRight.y - this.topLeft.y + 1][this.bottomRight.x - this.topLeft.x + 1];
-		for (short i = this.topLeft.y; i <= this.bottomRight.y; i++) {
-			for (short j = this.topLeft.x; j <= this.bottomRight.x; j++) {
+		for (int i = this.topLeft.y; i <= this.bottomRight.y; i++) {
+			for (int j = this.topLeft.x; j <= this.bottomRight.x; j++) {
 				tiles[i - this.topLeft.y][j - this.topLeft.x] = this.tiles[i][j];
 			}
 		}
@@ -68,7 +67,7 @@ public class SparseArrayBoardImpl implements Board {
 	@Override
 	public void seedBoard() {
 		// remember that (0,0) is the top left corner
-		Coordinate centre = new Coordinate((short) (WIDTH / 2), (short) (HEIGHT / 2));
+		Coordinate centre = new Coordinate(WIDTH / 2, HEIGHT / 2);
 		
 		// top row
 		this.tiles[centre.y - 1][centre.x - 1]		= new BuildingTile(1, TileType.BLUE);
@@ -86,18 +85,18 @@ public class SparseArrayBoardImpl implements Board {
 		this.tiles[centre.y + 1][centre.x + 1]		= new BuildingTile(2, TileType.RED);
 		
 		// build the urbanization tile coordinates
-		this.letterCoordinates.put('a', new Coordinate((short) (centre.y - 2), (short) (centre.x - 1)));
-		this.letterCoordinates.put('b', new Coordinate((short) (centre.y - 2), (short) (centre.x)));
-		this.letterCoordinates.put('c', new Coordinate((short) (centre.y - 2), (short) (centre.x + 1)));
-		this.letterCoordinates.put('d', new Coordinate((short) (centre.y - 1), (short) (centre.x + 2)));
-		this.letterCoordinates.put('e', new Coordinate((short) (centre.y), (short) (centre.x + 2)));
-		this.letterCoordinates.put('f', new Coordinate((short) (centre.y + 1), (short) (centre.x + 2)));
-		this.letterCoordinates.put('g', new Coordinate((short) (centre.y + 2), (short) (centre.x + 1)));
-		this.letterCoordinates.put('h', new Coordinate((short) (centre.y + 2), (short) (centre.x)));
-		this.letterCoordinates.put('i', new Coordinate((short) (centre.y + 2), (short) (centre.x - 1)));
-		this.letterCoordinates.put('j', new Coordinate((short) (centre.y + 1), (short) (centre.x - 2)));
-		this.letterCoordinates.put('k', new Coordinate((short) (centre.y), (short) (centre.x - 2)));
-		this.letterCoordinates.put('l', new Coordinate((short) (centre.y - 1), (short) (centre.x - 2)));
+		this.letterCoordinates.put('a', new Coordinate(centre.y - 2, centre.x - 1));
+		this.letterCoordinates.put('b', new Coordinate(centre.y - 2, centre.x));
+		this.letterCoordinates.put('c', new Coordinate(centre.y - 2, centre.x + 1));
+		this.letterCoordinates.put('d', new Coordinate(centre.y - 1, centre.x + 2));
+		this.letterCoordinates.put('e', new Coordinate(centre.y, centre.x + 2));
+		this.letterCoordinates.put('f', new Coordinate(centre.y + 1, centre.x + 2));
+		this.letterCoordinates.put('g', new Coordinate(centre.y + 2, centre.x + 1));
+		this.letterCoordinates.put('h', new Coordinate(centre.y + 2, centre.x));
+		this.letterCoordinates.put('i', new Coordinate(centre.y + 2, centre.x - 1));
+		this.letterCoordinates.put('j', new Coordinate(centre.y + 1, centre.x - 2));
+		this.letterCoordinates.put('k', new Coordinate(centre.y, centre.x - 2));
+		this.letterCoordinates.put('l', new Coordinate(centre.y - 1, centre.x - 2));
 		
 		// put them on the board
 		for (Character c : this.letterCoordinates.keySet()) {
@@ -105,7 +104,7 @@ public class SparseArrayBoardImpl implements Board {
 			this.tiles[co.y][co.x] = new UrbanizationTile(c);
 		}
 		
-		this.topLeft = new Coordinate((short) (centre.y - 2), (short) (centre.x - 2));
-		this.bottomRight = new Coordinate((short) (centre.y + 2), (short) (centre.x + 2));
+		this.topLeft = new Coordinate(centre.y - 2, centre.x - 2);
+		this.bottomRight = new Coordinate(centre.y + 2, centre.x + 2);
 	}
 }

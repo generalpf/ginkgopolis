@@ -6,10 +6,11 @@ public interface Board {
 	/**
 	 * @param tile - the tile to put on top of the letter
 	 * @param letter - which letter to place on
+	 * @return - the benefit gained by the player
 	 * 
 	 * TODO: this will need a callback to ask the player/AI where to move the letter to
 	 */
-	public void urbanize(BuildingTile tile, char letter);
+	public Benefit urbanize(BuildingTile tile, char letter);
 	
 	/**
 	 * @param players - the players in the game

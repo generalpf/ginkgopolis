@@ -1,8 +1,6 @@
 package com.kwyjibo.ginkgopolis.model;
 
 public class BuildingTile extends Tile {
-	public enum TileType { BLUE, RED, YELLOW };
-	
 	protected int rank;
 	protected TileType type;
 	

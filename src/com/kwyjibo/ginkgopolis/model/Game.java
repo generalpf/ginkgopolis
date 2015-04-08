@@ -54,16 +54,30 @@ public class Game {
 			this.buildRegularCard(1, TileType.RED, ActionType.EXPLOIT, new Benefit(1, 0, 0), null)
 		);
 		this.cardReadyPile.add(
-			this.buildRegularCard(1, TileType.RED, ActionType.URBANIZE, new Benefit(1, 0, 0), null)
+			this.buildRegularCard(2, TileType.RED, ActionType.URBANIZE, new Benefit(1, 0, 0), null)
 		);
 		this.cardReadyPile.add(
-			this.buildRegularCard(1, TileType.RED, ActionType.CONSTRUCT, new Benefit(1, 0, 0), null)
+			this.buildRegularCard(3, TileType.RED, ActionType.CONSTRUCT, new Benefit(1, 0, 0), null)
 		);
 		
 		// ...
 		
 		this.cardReadyPile.add(
-			this.buildRegularCard(1, TileType.RED, null, null, new ScoringHandler() {
+			this.buildRegularCard(19, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					for (Card card : player.getCards()) {
+						if (card.getType().equals(TileType.RED)) {
+							total += 2;
+						}
+					}
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(20, TileType.RED, null, null, new ScoringHandler() {
 				@Override
 				public int onScoring(Player player, Board board) {
 					// 9 points!

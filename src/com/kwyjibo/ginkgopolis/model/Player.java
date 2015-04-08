@@ -85,4 +85,8 @@ public class Player {
 	public int getResourcesLeft() {
 		return resourcesLeft;
 	}
+	
+	public List<Card> getCards() {
+		return cards;
+	}
 }

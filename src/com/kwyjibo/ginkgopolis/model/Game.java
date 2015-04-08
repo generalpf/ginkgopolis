@@ -86,22 +86,43 @@ public class Game {
 			)
 		);
 		this.cardReadyPile.add(
-				new Card(
-					4,
-					TileType.BLUE,
-					new Benefit(1, 0, 0),
-					new CardActions() {
-						@Override
-						public void onPlayerAction(PlayerAction action, Player player, Game game) {
-							if (action.equals(ActionType.CONSTRUCT)) {
-								player.applyBenefit(new Benefit(0, 0, 1), game.drawTiles(1));
-							}
-						}
-						@Override
-						public void onScoring(Player player, Board board) {
+			new Card(
+				4,
+				TileType.BLUE,
+				new Benefit(1, 0, 0),
+				new CardActions() {
+					@Override
+					public void onPlayerAction(PlayerAction action, Player player, Game game) {
+						if (action.equals(ActionType.CONSTRUCT)) {
+							player.applyBenefit(new Benefit(0, 0, 1), game.drawTiles(1));
 						}
 					}
-				)
-			);
+					@Override
+					public void onScoring(Player player, Board board) {
+					}
+				}
+			)
+		);
+		
+		// ...
+		
+		this.cardReadyPile.add(
+			new Card(
+				20,
+				TileType.RED,
+				null,	// these cards don't have starting benefits.
+				new CardActions() {
+					@Override
+					public void onPlayerAction(PlayerAction action, Player player, Game game) {
+					}
+					@Override
+					public void onScoring(Player player, Board board) {
+						// 9 points!
+						player.applyBenefit(new Benefit(0, 9, 0), null);
+					}
+				}
+			)
+		);
+		
 	}
 }

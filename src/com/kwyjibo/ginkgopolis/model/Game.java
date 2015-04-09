@@ -1,7 +1,5 @@
 package com.kwyjibo.ginkgopolis.model;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -18,10 +16,10 @@ public class Game {
 	protected List<RegularCard> cardDiscardPile;
 	protected Stack<BuildingTile> tileDrawPile;
 	
-	public Game(Player[] players, Board board) {
+	public Game(Player[] players) {
 		super();
 		this.players = players;
-		this.board = board;
+		this.board = new SparseArrayBoardImpl();
 		this.cardReadyPile = new ArrayList<RegularCard>();
 		this.cardDrawPile = new ArrayList<RegularCard>();
 		this.cardDiscardPile = new ArrayList<RegularCard>();

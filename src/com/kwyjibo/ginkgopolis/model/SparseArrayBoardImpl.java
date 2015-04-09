@@ -4,16 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SparseArrayBoardImpl implements Board {
-	private class Coordinate {
-		public int x;
-		public int y;
-		
-		public Coordinate(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-	}
-	
 	protected final int WIDTH = 255;
 	protected final int HEIGHT = 255;
 	

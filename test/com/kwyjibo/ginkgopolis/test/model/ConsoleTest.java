@@ -28,10 +28,9 @@ public class ConsoleTest {
 		GameUI ui = new ConsoleUI(new PrintStream(baos));
 	
 		ui.renderBoard(board);
-		
-		String content = baos.toString(); // e.g. ISO-8859-1
-		System.out.println(content);
-		
+
+		String content = baos.toString();
+
 		assertEquals(
 				content,
 				"    [a] [b] [c]     \n" +

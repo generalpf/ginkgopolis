@@ -16,6 +16,10 @@ public class SwingUI extends GameUI {
 	@Override
 	public void renderBoard(Board board) {
 		gamePanel.add(new JLabel("hello world!"));
+		
+		BoardPanel boardPanel = new BoardPanel(board);
+		gamePanel.add(boardPanel);
+		boardPanel.decorate();
 	}
 
 }

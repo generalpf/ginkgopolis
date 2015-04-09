@@ -20,6 +20,7 @@ public class Game {
 		super();
 		this.players = players;
 		this.board = new SparseArrayBoardImpl();
+		this.board.seedBoard();
 		this.cardReadyPile = new ArrayList<RegularCard>();
 		this.cardDrawPile = new ArrayList<RegularCard>();
 		this.cardDiscardPile = new ArrayList<RegularCard>();

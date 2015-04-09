@@ -1,5 +1,7 @@
 package com.kwyjibo.ginkgopolis.model;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -103,7 +105,17 @@ public class Game {
 				@Override
 				public int onScoring(Player player, Board board) {
 					int total = 0;
-					// stub
+					TileSlot[][] tileSlots = board.getSmallestTileBox();	
+					for (int i = 0; i < tileSlots.length; i++) {
+						for (int j = 0; j < tileSlots[0].length; j++) {
+							TileSlot tileSlot = tileSlots[i][j];
+							if (tileSlot instanceof BuildingTileSlot) {
+								if (((BuildingTileSlot) tileSlot).getOwner() == player) {
+									total += 2;									
+								}
+							}
+						}
+					}
 					return total;
 				}
 			})

@@ -29,14 +29,14 @@ public class SparseArrayBoardImpl implements Board {
 	 * a sparse array that will contain even the widest/tallest possible configuration
 	 * of the board
 	 */
-	protected Tile[][] tiles;
+	protected TileSlot[][] tileSlots;
 	/**
 	 * shortcut pointers to the coordinates of the letters
 	 */
 	protected HashMap<Character, Coordinate> letterCoordinates;
 	
 	public SparseArrayBoardImpl() {
-		this.tiles = new Tile[HEIGHT][WIDTH];
+		this.tileSlots = new TileSlot[HEIGHT][WIDTH];
 		this.letterCoordinates = new HashMap<Character, Coordinate>(12);
 	}
 	
@@ -53,12 +53,12 @@ public class SparseArrayBoardImpl implements Board {
 	}
 
 	@Override
-	public Tile[][] getSmallestTileBox() {
+	public TileSlot[][] getSmallestTileBox() {
 		// extract the rectangular region of this.tiles bounded by this.topLeft and this.bottomRight
-		Tile[][] tiles = new Tile[this.bottomRight.y - this.topLeft.y + 1][this.bottomRight.x - this.topLeft.x + 1];
+		TileSlot[][] tiles = new TileSlot[this.bottomRight.y - this.topLeft.y + 1][this.bottomRight.x - this.topLeft.x + 1];
 		for (int i = this.topLeft.y; i <= this.bottomRight.y; i++) {
 			for (int j = this.topLeft.x; j <= this.bottomRight.x; j++) {
-				tiles[i - this.topLeft.y][j - this.topLeft.x] = this.tiles[i][j];
+				tiles[i - this.topLeft.y][j - this.topLeft.x] = this.tileSlots[i][j];
 			}
 		}
 		return tiles;
@@ -70,19 +70,19 @@ public class SparseArrayBoardImpl implements Board {
 		Coordinate centre = new Coordinate(WIDTH / 2, HEIGHT / 2);
 		
 		// top row
-		this.tiles[centre.y - 1][centre.x - 1]		= new BuildingTile(1, TileType.BLUE);
-		this.tiles[centre.y - 1][centre.x]			= new BuildingTile(1, TileType.YELLOW);
-		this.tiles[centre.y - 1][centre.x + 1]		= new BuildingTile(1, TileType.RED);
+		this.tileSlots[centre.y - 1][centre.x - 1]	= new BuildingTileSlot(new BuildingTile(1, TileType.BLUE));
+		this.tileSlots[centre.y - 1][centre.x]		= new BuildingTileSlot(new BuildingTile(1, TileType.YELLOW));
+		this.tileSlots[centre.y - 1][centre.x + 1]	= new BuildingTileSlot(new BuildingTile(1, TileType.RED));
 		
 		// middle row
-		this.tiles[centre.y][centre.x - 1]			= new BuildingTile(2, TileType.YELLOW);
-		this.tiles[centre.y][centre.x]				= new BuildingTile(2, TileType.BLUE);
-		this.tiles[centre.y][centre.x + 1]			= new BuildingTile(3, TileType.BLUE);
+		this.tileSlots[centre.y][centre.x - 1]		= new BuildingTileSlot(new BuildingTile(2, TileType.YELLOW));
+		this.tileSlots[centre.y][centre.x]			= new BuildingTileSlot(new BuildingTile(2, TileType.BLUE));
+		this.tileSlots[centre.y][centre.x + 1]		= new BuildingTileSlot(new BuildingTile(3, TileType.BLUE));
 		
 		// bottom row
-		this.tiles[centre.y + 1][centre.x - 1]		= new BuildingTile(3, TileType.RED);
-		this.tiles[centre.y + 1][centre.x]			= new BuildingTile(3, TileType.YELLOW);
-		this.tiles[centre.y + 1][centre.x + 1]		= new BuildingTile(2, TileType.RED);
+		this.tileSlots[centre.y + 1][centre.x - 1]	= new BuildingTileSlot(new BuildingTile(3, TileType.RED));
+		this.tileSlots[centre.y + 1][centre.x]		= new BuildingTileSlot(new BuildingTile(3, TileType.YELLOW));
+		this.tileSlots[centre.y + 1][centre.x + 1]	= new BuildingTileSlot(new BuildingTile(2, TileType.RED));
 		
 		// build the urbanization tile coordinates
 		this.letterCoordinates.put('a', new Coordinate(centre.y - 2, centre.x - 1));
@@ -101,7 +101,7 @@ public class SparseArrayBoardImpl implements Board {
 		// put them on the board
 		for (Character c : this.letterCoordinates.keySet()) {
 			Coordinate co = this.letterCoordinates.get(c);
-			this.tiles[co.y][co.x] = new UrbanizationTile(c);
+			this.tileSlots[co.y][co.x] = new UrbanizationTileSlot(new UrbanizationTile(c));
 		}
 		
 		this.topLeft = new Coordinate(centre.y - 2, centre.x - 2);

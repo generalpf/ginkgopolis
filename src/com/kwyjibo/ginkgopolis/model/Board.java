@@ -22,7 +22,7 @@ public interface Board {
 	 * @return - a 2D array of tiles that is the smallest box that can contain the board
 	 * 				(i.e. no empty columns or rows)
 	 */
-	public Tile[][] getSmallestTileBox();
+	public TileSlot[][] getSmallestTileBox();
 	
 	/**
 	 * prepares the board by creating and placing the nine starting tiles and the letters

@@ -1,24 +1,13 @@
 package com.kwyjibo.ginkgopolis.model;
 
-public class TileSlot {
-	protected BuildingTile tile;
-	protected Player player;
-	protected int height;
-	protected boolean marked;
+public abstract class TileSlot {
+	protected Tile tile;
 	
-	public TileSlot(BuildingTile tile) {
-		super();
+	public TileSlot(Tile tile) {
 		this.tile = tile;
-		this.player = null;
-		this.height = 1;
-		this.marked = false;
 	}
 	
-	public void replaceTile(BuildingTile tile, Player player) {
-		this.tile = tile;
-		this.player = player;
-		++this.height;
-		this.marked = true;
+	public Tile getTile() {
+		return tile;
 	}
-	
 }

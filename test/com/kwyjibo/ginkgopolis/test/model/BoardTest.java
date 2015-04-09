@@ -51,26 +51,6 @@ public class BoardTest {
 		BuildingTile expectedBlue2 = (BuildingTile) tileSlots[2][2].getTile();
 		assertEquals(TileType.BLUE, expectedBlue2.getType());
 		assertEquals(2, expectedBlue2.getRank());
-		
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-				TileSlot tileSlot = tileSlots[i][j];
-				if (tileSlot == null) {
-					System.out.print("    ");
-				}
-				else if (tileSlot instanceof UrbanizationTileSlot) {
-					UrbanizationTile urbTile = (UrbanizationTile) tileSlot.getTile();
-					System.out.print("[" + urbTile.getLetter() + "] ");
-				}
-				else if (tileSlot instanceof BuildingTileSlot) {
-					BuildingTile buildingTile = (BuildingTile) tileSlot.getTile();
-					System.out.print(buildingTile.getType().toString().charAt(0) + new Integer(buildingTile.getRank()).toString() + "  ");
-				}
-				if (j == 4) {
-					System.out.println();
-				}
-			}
-		}
 	}
 
 }

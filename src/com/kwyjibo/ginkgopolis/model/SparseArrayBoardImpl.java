@@ -56,7 +56,9 @@ public class SparseArrayBoardImpl implements Board {
 	
 	@Override
 	public void seedBoard() {
-		// remember that (0,0) is the top left corner
+		// remember that (0, 0) is the top left corner
+		// remember that (x, y) means tileSlots[y][x]
+		
 		Coordinate centre = new Coordinate(WIDTH / 2, HEIGHT / 2);
 		
 		// top row
@@ -75,18 +77,18 @@ public class SparseArrayBoardImpl implements Board {
 		this.tileSlots[centre.y + 1][centre.x + 1]	= new BuildingTileSlot(new BuildingTile(2, TileType.RED));
 		
 		// build the urbanization tile coordinates
-		this.letterCoordinates.put('a', new Coordinate(centre.y - 2, centre.x - 1));
-		this.letterCoordinates.put('b', new Coordinate(centre.y - 2, centre.x));
-		this.letterCoordinates.put('c', new Coordinate(centre.y - 2, centre.x + 1));
-		this.letterCoordinates.put('d', new Coordinate(centre.y - 1, centre.x + 2));
-		this.letterCoordinates.put('e', new Coordinate(centre.y, centre.x + 2));
-		this.letterCoordinates.put('f', new Coordinate(centre.y + 1, centre.x + 2));
-		this.letterCoordinates.put('g', new Coordinate(centre.y + 2, centre.x + 1));
-		this.letterCoordinates.put('h', new Coordinate(centre.y + 2, centre.x));
-		this.letterCoordinates.put('i', new Coordinate(centre.y + 2, centre.x - 1));
-		this.letterCoordinates.put('j', new Coordinate(centre.y + 1, centre.x - 2));
-		this.letterCoordinates.put('k', new Coordinate(centre.y, centre.x - 2));
-		this.letterCoordinates.put('l', new Coordinate(centre.y - 1, centre.x - 2));
+		this.letterCoordinates.put('a', new Coordinate(centre.x - 1, centre.y - 2));
+		this.letterCoordinates.put('b', new Coordinate(centre.x, centre.y - 2));
+		this.letterCoordinates.put('c', new Coordinate(centre.x + 1, centre.y - 2));
+		this.letterCoordinates.put('d', new Coordinate(centre.x + 2, centre.y - 1));
+		this.letterCoordinates.put('e', new Coordinate(centre.x + 2, centre.y));
+		this.letterCoordinates.put('f', new Coordinate(centre.x + 2, centre.y + 1));
+		this.letterCoordinates.put('g', new Coordinate(centre.x + 1, centre.y + 2));
+		this.letterCoordinates.put('h', new Coordinate(centre.x, centre.y + 2));
+		this.letterCoordinates.put('i', new Coordinate(centre.x - 1, centre.y + 2));
+		this.letterCoordinates.put('j', new Coordinate(centre.x - 2, centre.y + 1));
+		this.letterCoordinates.put('k', new Coordinate(centre.x - 2, centre.y));
+		this.letterCoordinates.put('l', new Coordinate(centre.x - 2, centre.y - 1));
 		
 		// put them on the board
 		for (Character c : this.letterCoordinates.keySet()) {

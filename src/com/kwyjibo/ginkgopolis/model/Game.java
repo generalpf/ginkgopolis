@@ -63,6 +63,144 @@ public class Game {
 		// ...
 		
 		this.cardReadyPile.add(
+			this.buildRegularCard(1, TileType.YELLOW, ActionType.EXPLOIT, new Benefit(0, 1, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(2, TileType.YELLOW, ActionType.URBANIZE, new Benefit(0, 1, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(3, TileType.YELLOW, ActionType.CONSTRUCT, new Benefit(0, 1, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(1, TileType.BLUE, ActionType.EXPLOIT, new Benefit(0, 0, 1), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(2, TileType.BLUE, ActionType.URBANIZE, new Benefit(0, 0, 1), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(3, TileType.BLUE, ActionType.CONSTRUCT, new Benefit(0, 0, 1), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(4, TileType.RED, ActionType.EXPLOIT, new Benefit(1, 0, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(5, TileType.RED, ActionType.URBANIZE, new Benefit(1, 0, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(6, TileType.RED, ActionType.CONSTRUCT, new Benefit(1, 0, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(7, TileType.RED, ActionType.EXPLOIT, new Benefit(1, 1, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(8, TileType.RED, ActionType.URBANIZE, new Benefit(1, 1, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(9, TileType.RED, ActionType.CONSTRUCT, new Benefit(1, 1, 0), null)
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(10, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					// stub
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(11, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					// stub
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(12, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					// stub
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(13, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					// stub
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(14, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					// stub
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(15, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					// stub
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(16, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					for (Card card : player.getCards()) {
+						if (card.getPlayerActionHandler().equals(ActionType.EXPLOIT)) {
+							total += 2;
+						}
+					}
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(17, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					for (Card card : player.getCards()) {
+						if (card.getPlayerActionHandler().equals(ActionType.URBANIZE)) {
+							total += 2;
+						}
+					}
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
+			this.buildRegularCard(18, TileType.RED, null, null, new ScoringHandler() {
+				@Override
+				public int onScoring(Player player, Board board) {
+					int total = 0;
+					for (Card card : player.getCards()) {
+						if (card.getPlayerActionHandler().equals(ActionType.CONSTRUCT)) {
+							total += 2;
+						}
+					}
+					return total;
+				}
+			})
+		);
+		this.cardReadyPile.add(
 			this.buildRegularCard(19, TileType.RED, null, null, new ScoringHandler() {
 				@Override
 				public int onScoring(Player player, Board board) {

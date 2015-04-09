@@ -73,7 +73,7 @@ public class Player {
 	public void scoreCards(Board board) {
 		for (Card card : this.cards) {
 			if (card instanceof RegularCard) {
-				((RegularCard) card).getScoringHandler().onScoring(this, board);
+				this.points += ((RegularCard) card).getScoringHandler().onScoring(this, board);
 			}
 		}
 	}

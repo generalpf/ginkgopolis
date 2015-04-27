@@ -24,7 +24,19 @@ public class BuildingTileSlot extends TileSlot {
 		return marked;
 	}
 	
+	public void unmark() {
+		this.marked = false;
+	}
+	
 	public Player getOwner() {
 		return owner;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public BuildingTile getBuildingTile() {
+		return (BuildingTile) this.tile;
 	}
 }

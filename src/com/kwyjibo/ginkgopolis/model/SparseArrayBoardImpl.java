@@ -1,9 +1,12 @@
 package com.kwyjibo.ginkgopolis.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SparseArrayBoardImpl implements Board {
+public class SparseArrayBoardImpl extends Board implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	protected final int WIDTH = 255;
 	protected final int HEIGHT = 255;
 	
@@ -31,7 +34,7 @@ public class SparseArrayBoardImpl implements Board {
 	}
 	
 	@Override
-	public Benefit urbanize(BuildingTile tile, char letter) {
+	public Benefit urbanize(Player player, BuildingTile tile, char letter) {
 		// TODO Auto-generated method stub
 		return new Benefit(0, 0, 0);
 	}

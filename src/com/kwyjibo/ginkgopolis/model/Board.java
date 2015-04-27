@@ -2,7 +2,7 @@ package com.kwyjibo.ginkgopolis.model;
 
 import java.util.Map;
 
-public interface Board {
+public abstract class Board {
 	/**
 	 * @param tile - the tile to put on top of the letter
 	 * @param letter - which letter to place on
@@ -10,22 +10,22 @@ public interface Board {
 	 * 
 	 * TODO: this will need a callback to ask the player/AI where to move the letter to
 	 */
-	public Benefit urbanize(BuildingTile tile, char letter);
+	public abstract Benefit urbanize(Player player, BuildingTile tile, char letter);
 	
 	/**
 	 * @param players - the players in the game
 	 * @return - a mapping of Player to points-scored-for-districts
 	 */
-	public Map<Player, Integer> scoreDistricts(Player[] players);
+	public abstract Map<Player, Integer> scoreDistricts(Player[] players);
 	
 	/**
 	 * @return - a 2D array of tiles that is the smallest box that can contain the board
 	 * 				(i.e. no empty columns or rows)
 	 */
-	public TileSlot[][] getSmallestTileBox();
+	public abstract TileSlot[][] getSmallestTileBox();
 	
 	/**
 	 * prepares the board by creating and placing the nine starting tiles and the letters
 	 */
-	public void seedBoard();
+	public abstract void seedBoard();
 }

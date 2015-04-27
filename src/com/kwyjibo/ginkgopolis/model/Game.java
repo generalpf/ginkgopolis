@@ -11,16 +11,23 @@ public class Game {
 	protected Board board;
 	// TODO: hands
 	protected List<StartingCard> startingCardPile;
+	/**
+	 * the cards that have not entered the game yet from building actions
+	 */
 	protected List<RegularCard> cardReadyPile;
+	/**
+	 * the cards that have entered the game from building actions but are face-down
+	 */
 	protected List<RegularCard> cardDrawPile;
+	/**
+	 * the cards that have entered the game and have been played
+	 */
 	protected List<RegularCard> cardDiscardPile;
 	protected Stack<BuildingTile> tileDrawPile;
 	
 	public Game(Player[] players) {
-		super();
 		this.players = players;
 		this.board = new SparseArrayBoardImpl();
-		this.board.seedBoard();
 		this.cardReadyPile = new ArrayList<RegularCard>();
 		this.cardDrawPile = new ArrayList<RegularCard>();
 		this.cardDiscardPile = new ArrayList<RegularCard>();
@@ -36,6 +43,7 @@ public class Game {
 	}
 	
 	public void prepareGame() {
+		this.board.seedBoard();
 		this.seedDeck();
 	}
 	
@@ -47,6 +55,10 @@ public class Game {
 			}
 		}
 		return tiles;
+	}
+	
+	public List<RegularCard> getCardReadyPile() {
+		return cardReadyPile;
 	}
 	
 	protected void seedDeck() {
@@ -104,13 +116,14 @@ public class Game {
 				@Override
 				public int onScoring(Player player, Board board) {
 					int total = 0;
-					TileSlot[][] tileSlots = board.getSmallestTileBox();	
-					for (int i = 0; i < tileSlots.length; i++) {
-						for (int j = 0; j < tileSlots[0].length; j++) {
-							TileSlot tileSlot = tileSlots[i][j];
-							if (tileSlot instanceof BuildingTileSlot) {
-								if (((BuildingTileSlot) tileSlot).getOwner() == player) {
-									total += 2;									
+					TileSlot[][] slots = board.getSmallestTileBox();
+					for (int y = 0; y < slots.length - 1; y++) {
+						for (int x = 0; x < slots[y].length - 1; x++) {
+							TileSlot ts = slots[y][x];
+							if (ts != null && ts instanceof BuildingTileSlot) {
+								BuildingTileSlot bts = (BuildingTileSlot) ts;
+								if (player.equals(bts.getOwner()) && bts.getBuildingTile().getType().equals(TileType.RED)) {
+									total += 1;
 								}
 							}
 						}
@@ -124,7 +137,18 @@ public class Game {
 				@Override
 				public int onScoring(Player player, Board board) {
 					int total = 0;
-					// stub
+					TileSlot[][] slots = board.getSmallestTileBox();
+					for (int y = 0; y < slots.length - 1; y++) {
+						for (int x = 0; x < slots[y].length - 1; x++) {
+							TileSlot ts = slots[y][x];
+							if (ts != null && ts instanceof BuildingTileSlot) {
+								BuildingTileSlot bts = (BuildingTileSlot) ts;
+								if (player.equals(bts.getOwner()) && bts.getBuildingTile().getType().equals(TileType.YELLOW)) {
+									total += 1;
+								}
+							}
+						}
+					}
 					return total;
 				}
 			})
@@ -134,7 +158,18 @@ public class Game {
 				@Override
 				public int onScoring(Player player, Board board) {
 					int total = 0;
-					// stub
+					TileSlot[][] slots = board.getSmallestTileBox();
+					for (int y = 0; y < slots.length - 1; y++) {
+						for (int x = 0; x < slots[y].length - 1; x++) {
+							TileSlot ts = slots[y][x];
+							if (ts != null && ts instanceof BuildingTileSlot) {
+								BuildingTileSlot bts = (BuildingTileSlot) ts;
+								if (player.equals(bts.getOwner()) && bts.getBuildingTile().getType().equals(TileType.BLUE)) {
+									total += 1;
+								}
+							}
+						}
+					}
 					return total;
 				}
 			})
@@ -144,7 +179,18 @@ public class Game {
 				@Override
 				public int onScoring(Player player, Board board) {
 					int total = 0;
-					// stub
+					TileSlot[][] slots = board.getSmallestTileBox();
+					for (int y = 0; y < slots.length - 1; y++) {
+						for (int x = 0; x < slots[y].length - 1; x++) {
+							TileSlot ts = slots[y][x];
+							if (ts != null && ts instanceof BuildingTileSlot) {
+								BuildingTileSlot bts = (BuildingTileSlot) ts;
+								if (player.equals(bts.getOwner()) && bts.getBuildingTile().getType().equals(TileType.RED)) {
+									total += 1;
+								}
+							}
+						}
+					}
 					return total;
 				}
 			})
@@ -154,7 +200,18 @@ public class Game {
 				@Override
 				public int onScoring(Player player, Board board) {
 					int total = 0;
-					// stub
+					TileSlot[][] slots = board.getSmallestTileBox();
+					for (int y = 0; y < slots.length - 1; y++) {
+						for (int x = 0; x < slots[y].length - 1; x++) {
+							TileSlot ts = slots[y][x];
+							if (ts != null && ts instanceof BuildingTileSlot) {
+								BuildingTileSlot bts = (BuildingTileSlot) ts;
+								if (player.equals(bts.getOwner()) && bts.getHeight() <= 2) {
+									total += 1;
+								}
+							}
+						}
+					}
 					return total;
 				}
 			})
@@ -164,7 +221,18 @@ public class Game {
 				@Override
 				public int onScoring(Player player, Board board) {
 					int total = 0;
-					// stub
+					TileSlot[][] slots = board.getSmallestTileBox();
+					for (int y = 0; y < slots.length - 1; y++) {
+						for (int x = 0; x < slots[y].length - 1; x++) {
+							TileSlot ts = slots[y][x];
+							if (ts != null && ts instanceof BuildingTileSlot) {
+								BuildingTileSlot bts = (BuildingTileSlot) ts;
+								if (player.equals(bts.getOwner()) && bts.getHeight() >= 3) {
+									total += 3;
+								}
+							}
+						}
+					}
 					return total;
 				}
 			})

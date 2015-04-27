@@ -43,13 +43,14 @@ public class AppWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Ginkgopolis by Xavier Georges");
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 525, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel mainPanel = new JPanel();
 		frame.getContentPane().add(mainPanel);
 		
 		Game game = new Game(new Player[] { new Player("Ryan", 3, 5, 15), new Player("Adam", 3, 5, 15) });
+		game.prepareGame();
 		(new SwingUI(mainPanel)).renderBoard(game.getBoard());
 	}
 

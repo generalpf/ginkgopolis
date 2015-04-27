@@ -10,9 +10,9 @@ import com.kwyjibo.ginkgopolis.model.BuildingTileSlot;
 import com.kwyjibo.ginkgopolis.model.Game;
 import com.kwyjibo.ginkgopolis.model.Player;
 import com.kwyjibo.ginkgopolis.model.RegularCard;
-import com.kwyjibo.ginkgopolis.model.Tile;
 import com.kwyjibo.ginkgopolis.model.TileSlot;
 import com.kwyjibo.ginkgopolis.model.TileType;
+import com.kwyjibo.ginkgopolis.player.HumanPlayer;
 
 public class GameTest {
 	protected Game game;
@@ -28,7 +28,7 @@ public class GameTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		game = new Game(new Player[] { new Player("Ryan", 3, 5, 15), new Player("Adam", 3, 5, 15) });
+		game = new Game(new Player[] { new HumanPlayer("Ryan", 3, 5, 15), new HumanPlayer("Adam", 3, 5, 15) });
 		game.prepareGame();
 	}
 

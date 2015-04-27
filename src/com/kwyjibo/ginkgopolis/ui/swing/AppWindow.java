@@ -5,10 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import com.kwyjibo.ginkgopolis.model.Board;
 import com.kwyjibo.ginkgopolis.model.Game;
 import com.kwyjibo.ginkgopolis.model.Player;
-import com.kwyjibo.ginkgopolis.model.SparseArrayBoardImpl;
+import com.kwyjibo.ginkgopolis.player.HumanPlayer;
 
 public class AppWindow {
 
@@ -49,7 +48,12 @@ public class AppWindow {
 		JPanel mainPanel = new JPanel();
 		frame.getContentPane().add(mainPanel);
 		
-		Game game = new Game(new Player[] { new Player("Ryan", 3, 5, 15), new Player("Adam", 3, 5, 15) });
+		Game game = new Game(
+			new Player[] {
+				new HumanPlayer("Ryan", 3, 5, 15),
+				new HumanPlayer("Adam", 3, 5, 15)
+			}
+		);
 		game.prepareGame();
 		(new SwingUI(mainPanel)).renderBoard(game.getBoard());
 	}

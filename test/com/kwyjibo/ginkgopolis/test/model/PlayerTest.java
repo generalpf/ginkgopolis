@@ -9,13 +9,14 @@ import com.kwyjibo.ginkgopolis.model.Benefit;
 import com.kwyjibo.ginkgopolis.model.BuildingTile;
 import com.kwyjibo.ginkgopolis.model.Player;
 import com.kwyjibo.ginkgopolis.model.TileType;
+import com.kwyjibo.ginkgopolis.player.HumanPlayer;
 
 public class PlayerTest {
 	protected Player player;
 	
 	@Before
 	public void setUp() throws Exception {
-		this.player = new Player("Test Player", 3, 5, 15);
+		this.player = new HumanPlayer("Test Player", 3, 5, 15);
 	}
 
 	@Test

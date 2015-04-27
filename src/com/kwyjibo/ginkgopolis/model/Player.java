@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Player {
+public abstract class Player {
 	protected String name;
 	protected int points;
 	protected int newHandTokens;
@@ -89,4 +89,6 @@ public class Player {
 	public List<Card> getCards() {
 		return cards;
 	}
+	
+	public abstract TileSlot chooseNewUrbanizeTileLocation(TileSlot[] candidates);
 }
